@@ -1,0 +1,8 @@
+/node_modules
+/scripts
+/src
+/dist
+.eslintrc.cjs
+tsconfig.json
+.env
+**/*.pem

@@ -1,0 +1,47 @@
+{
+  "name": "reverse-proxy-node",
+  "version": "1.0.1",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "description": "NodeJS reverse proxy",
+  "keywords": [
+    "CLI",
+    "Proxy",
+    "Reverse Proxy"
+  ],
+  "homepage": "https://github.com/SoundOfTheSky/reverse-proxy#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SoundOfTheSky/reverse-proxy.git"
+  },
+  "type": "module",
+  "author": {
+    "email": "tkachiov.2000@gmail.com",
+    "name": "SoundOfTheSky",
+    "url": "https://github.com/SoundOfTheSky"
+  },
+  "bin": {
+    "reverse-proxy": "bin/index.js"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "node scripts/development.cjs --max-old-space-size=8000",
+    "build": "node scripts/build.cjs",
+    "start": "node dist --max-old-space-size=8000",
+    "lint": "eslint \"src/**/*.{js,ts}\" --fix",
+    "prepack": "node scripts/build.cjs && node scripts/prepublish.cjs",
+    "postpack": "node scripts/postpublish.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint": "latest",
+    "eslint-config-xo": "latest",
+    "eslint-config-xo-typescript": "latest",
+    "eslint-plugin-solid": "latest",
+    "eslint-plugin-sonarjs": "latest",
+    "eslint-plugin-unicorn": "latest",
+    "typescript": "latest"
+  }
+}
