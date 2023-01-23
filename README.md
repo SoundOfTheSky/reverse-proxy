@@ -11,7 +11,7 @@
 ```
 reverse-proxy 
     /\.(jpg)|(png)$/=cdn.com   | Every .png and .jpg is served from cdn.com
-    /^/api/=:8080              | /api => localhost:8080
+    /^/api/=192.168.1.100:8080 | /api => 192.168.1.100:8080
     /^//=:5173                 | Everything else => localhost:5173
     --key privkey.pem 
     --ca chain.pem 
@@ -45,7 +45,7 @@ RevProxy({
 ```
 
 #### Options:
-- port: <number> | --port <number> | -p <number> **Default: 443**
+- port: <number> | --port <number> | -p <number> **Default: 443 or 80** based on cert
 - key: <path> | --key <path>
 - cert: <path> | --cert <path>
 - ca: <path> | --ca <path>
@@ -57,7 +57,7 @@ CLI: /RegExp/=address:port OR /RegExp/=address OR /RegExp/=:port
 Programmatic: {
     '/RegExp/': {
         address: 'URL',  // Default 127.0.0.1
-        port: <number>   // Default 443
+        port: <number>   // Default 443 or 80
     }
 }
 ```

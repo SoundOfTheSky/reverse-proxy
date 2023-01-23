@@ -32,13 +32,13 @@ type ReverseProxyTlsOptions = {
 export type ReverseProxyOptions = ReverseProxyNetOptions | ReverseProxyTlsOptions;
 
 export default function revproxy(options: ReverseProxyOptions): void {
-	const port = options.port ?? 443;
+	const port = options.port ?? (options.cert ? 443 : 80);
 	const rules = Object.entries(options.rules).map(([k, v]) => [new RegExp(k.split('/').slice(1, -1).join('/'), k.split('/').at(-1)), v]) as RulesParsed;
 	if (options.cert) {
 		tls.createServer({
-			key: readFileSync(process.env.KEY ?? 'privkey.pem', 'utf8'),
-			cert: readFileSync(process.env.CERT ?? 'cert.pem', 'utf8'),
-			ca: readFileSync(process.env.CHAIN ?? 'chain.pem', 'utf8'),
+			cert: readFileSync(options.cert, 'utf8'),
+			...(options.key && {key: readFileSync(options.key, 'utf8')}),
+			...(options.ca && {ca: readFileSync(options.ca, 'utf8')}),
 			...(options.serverOpts ?? {}) as tls.TlsOptions,
 		}, socket => {
 			handler(socket, rules);
@@ -95,18 +95,3 @@ function handler(socket: net.Socket, rules: RulesParsed) {
 		destroy();
 	});
 }
-
-// Revproxy({
-// 	port: 443,
-// 	key: 'privkey.pem',
-// 	ca: 'chain.pem',
-// 	cert: 'cert.pem',
-// 	rules: {
-// 		'/^/api/': {
-// 			port: 8080,
-// 		},
-// 		'/^//': {
-// 			port: 5173,
-// 		},
-// 	},
-// });
