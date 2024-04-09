@@ -16,7 +16,7 @@
     "emitDecoratorMetadata": true,
     "removeComments": false,
     "importHelpers": true,
-    "outDir": "./dist",
+    "outDir": "./",
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": true

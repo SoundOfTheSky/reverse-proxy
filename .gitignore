@@ -3,3 +3,6 @@
 .env
 .DS_Store
 **/*.pem
+**/*.js
+**/*.d.ts
+**/*.map

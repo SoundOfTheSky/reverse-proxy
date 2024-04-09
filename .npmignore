@@ -1,8 +1,7 @@
 /node_modules
-/scripts
 /src
-/dist
 .eslintrc.cjs
+.gitignore
+.prettierrc.cjs
 tsconfig.json
-.env
 **/*.pem

@@ -4,13 +4,12 @@
 
 
 #### Install:
-- `npm install -g reverse-proxy-node`
-- `yarn global add reverse-proxy-node`
+`npm install -g reverse-proxy-node`
 
 #### Example of usage:
 ```
 reverse-proxy 
-    /\.(jpg)|(png)$/=cdn.com   | Every .png and .jpg is served from cdn.com
+    /\.(jpg|png)$/=cdn.com   | Every .png and .jpg is served from cdn.com
     /^/api/=192.168.1.100:8080 | /api => 192.168.1.100:8080
     /^//=:5173                 | Everything else => localhost:5173
     --key privkey.pem 
